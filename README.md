@@ -32,7 +32,7 @@ Modify the path to the input and output files in the Getnpymatrix_chr_all_sample
 ```
 bash Getnpymatrix_chr_all_sample.sh  
 ```
-# Model training
+## Model training
 If you want to retrain the model, follow the training data generation method in our paper to get the required training sample, and then run:  
 ```
 python loops_train.py -t [Train file directory] -v [validation file directory] -o [output file directory]
@@ -42,7 +42,7 @@ Run the following code to make predictions of genome-wide chromatin loops:
 ```
 bash cgloop.sh
 ```
-# Clustering
+## Clustering
 The clustering method similar to that in peakachu[https://github.com/tariks/peakachu]() was used for clustering screening:  
 ```
 git clone https://github.com/tariks/peakachu
