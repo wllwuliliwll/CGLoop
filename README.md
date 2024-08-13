@@ -14,3 +14,19 @@ scipy
 pandas   
 h5py   
 cooler  
+juicer_tools
+# Usage
+## Data preparation
+Data preparation mainly involves: downloading .hic file, extracting Hi-C contact matrix from.hic file, and generating submatrix from Hi-C contact matrix. HTC data downloaded from [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525]()  
+### Extracting Hi-C contact matrix from.hic file
+Change the.jar,.hic, and output file paths in the GetBigMatrix_Cells_KRobserved.sh file, and run:  
+```
+bash GetBigMatrix_Cells_KRobserved.sh
+```
+The above process obtains the hic contact matrix for each chromosome from the.hic data.  
+Modify the path to the input and output files in the Getnpymatrix_chr_all_sample.sh file, where the input file is the output file from the previous step, and run:  
+### Generating submatrix from Hi-C contact matrix
+```
+bash Getnpymatrix_chr_all_sample.sh  
+```
+The above process cuts the hic contact matrix of each chromosome into multiple submatrices.
