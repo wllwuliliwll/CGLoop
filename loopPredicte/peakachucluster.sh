@@ -1,11 +1,9 @@
 #!/bin/bash
 resolutions=("5000")
 input_files=(
-             "../Data/PredicteData/chr20.bedpe"
-             "../Data/PredicteData/chr21.bedpe"
-             "../Data/PredicteData/chr22.bedpe"
+             "/Path/to/chaname.bedpe"
 )
-thres=("0.5" "0.7" "0.9")
+thres=("0.9")
 
 for res in "${resolutions[@]}"; do
     for thre in "${thres[@]}"; do
@@ -13,12 +11,9 @@ for res in "${resolutions[@]}"; do
         for input_file in "${input_files[@]}"; do
             file_name="${input_file##*/}"
             file_name_no_extension="${file_name%.*}"    
-            #output_file="${input_file%/*}/${file_name_no_extension}_loop${thre}.bedpe"
-
-            output_file="../Data/PredicteData/${file_name_no_extension}_loopcluster${thre}.bedpe"
+            output_file="${input_file%/*}/${file_name_no_extension}_loop${thre}.bedpe"
     
             peakachu pool -r "$res" -i "$input_file" -o "$output_file" -t ${thre}
-
 
             output_files+=("$output_file")
         done
