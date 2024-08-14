@@ -53,10 +53,10 @@ bash peakachucluster.sh
 ```
 # Output file format
 ```
-[chrname_column1]             The chromosome name1 of the left anchor of the chromatin loop
+[chrname_column1]            The chromosome name1 of the left anchor of the chromatin loop
 [location10]                 The starting position of the left anchor of the chromatin loop
 [location11]                 The end position of the left anchor of the chromatin loop
-[chrname_column2]             The chromosome name2 of the right anchor of the chromatin loop
+[chrname_column2]            The chromosome name2 of the right anchor of the chromatin loop
 [location20]                 The starting position of the right anchor of the chromatin loop
 [location21]                 The end position of the right anchor of the chromatin loop
 [predictions]                The predictions of chromatin loop
