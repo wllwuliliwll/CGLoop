@@ -1,7 +1,7 @@
 #!/bin/bash
 
 input_paths=(
-"/Path/to/predicte/chrname.npy"
+"/Path/to/chrname.npy"
 )
 
 resolutions=(5000)
@@ -14,7 +14,7 @@ do
         filename=${parts[-1]}
         chrname=$(echo $filename | grep -oP 'chr\d+')
         res=$((resolution / 1000))
-        python ./loops_predicte.py -i $input_path -o /Path/to/predicte/${chrname}.bedpe -r $resolution               
+        python ./loops_predicte.py -i $input_path -o /Path/to/${chrname}.bedpe -r $resolution               
     done
 done
 
