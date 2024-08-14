@@ -3,7 +3,7 @@
 # converting .hic files to .cool file
 hic_files=(
 
-    "../Data/HiC/GM12878_insitu_combined_30.hic"
+    "/Path/to/predicte/chaname.hic"
 )
 resolutions="25000 50000"
 for hic_file in "${hic_files[@]}"; do
