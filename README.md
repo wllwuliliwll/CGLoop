@@ -8,6 +8,7 @@ conda create -n CGLoop python=3.7.12
 conda activate CGLoop    
 ```
 To set up a conda virtual environment, the following installation packages are required:  
+```
 scikit-learn=1.0.2   
 tensorflow=2.11.0  
 hic-straw=1.3.1  
@@ -17,6 +18,7 @@ pandas
 h5py   
 cooler  
 juicer_tools
+```
 # Usage
 ## Data preparation
 Data preparation mainly involves: downloading .hic file, extracting Hi-C contact matrix from.hic file, and generating submatrix from Hi-C contact matrix. HTC data downloaded from [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525]()  
