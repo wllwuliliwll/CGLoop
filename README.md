@@ -35,7 +35,7 @@ bash Getnpymatrix_chr_all_sample.sh
 ## Model training
 If you want to retrain the model, follow the training data generation method in our paper to get the required training sample, and then run:  
 ```
-python loops_train.py -t [Train file directory] -v [validation file directory] -o [output file directory]
+python loops_train.py -t [Train file directory] -v [validation file directory] 
 ```
 # Use CGLoop to predict chromatin loops  
 Run the following code to make predictions of genome-wide chromatin loops:  
