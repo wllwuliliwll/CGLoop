@@ -11,12 +11,14 @@ To set up a conda virtual environment, the following installation packages are r
 ```
 scikit-learn=1.0.2   
 tensorflow=2.11.0  
-hic-straw=1.3.1  
+hic-straw=1.3.1
+joblib=1.3.1  
 numpy  
 scipy   
 pandas   
 h5py   
-cooler  
+cooler
+pysam  
 juicer_tools
 ```
 # Usage
