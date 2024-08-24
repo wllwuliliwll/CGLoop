@@ -59,7 +59,7 @@ python training_test.py
 ```
 ### Training  
 ```
-python loops_train.py -t [Train file directory] -v [validation file directory] 
+python loops_train.py -t [Train file ] -v [validation file ] 
 ```
 # Use CGLoop to predict chromatin loops  
 Run the following code to make predictions of genome-wide chromatin loops:  
