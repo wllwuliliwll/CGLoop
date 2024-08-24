@@ -84,7 +84,7 @@ bash peakachucluster.sh
 [location20]                 The starting position of the right anchor of the chromatin loop
 [location21]                 The end position of the right anchor of the chromatin loop
 [predictions]                The predictions of chromatin loop
-[infy]                       The interaction strength of infy chromatin loop
+[infy]                       The interaction strength of chromatin loop
 ```
 
 
