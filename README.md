@@ -23,7 +23,7 @@ juicer_tools
 ```
 # Usage
 ## Data preparation
-Data preparation mainly involves: downloading .hic file, extracting Hi-C contact matrix from.hic file, and generating submatrix from Hi-C contact matrix. HTC data downloaded from [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525]()  
+Data preparation mainly involves: downloading .hic file, extracting Hi-C contact matrix from.hic file, and generating submatrix from Hi-C contact matrix. Hi-C data downloaded from [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525]()  
 ### Extracting Hi-C contact matrix from.hic file
 The process obtains the hic contact matrix for each chromosome from the.hic file.  
 Modify the path to the input and output files in the GetBigMatrix_Cells_KRobserved.sh file: The.jar file is the path where the juicer tools resides, .hic file path consisting of DPATH and CELL, outputDir Specifies the path for storing output files, and run:  
@@ -37,7 +37,7 @@ Modify the path to the input and output files in the Getnpymatrix_chr_all_sample
 bash Getnpymatrix_chr_all_sample.sh  
 ```
 ## Model training
-If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. Here, you should modify the files path in the file. 
+If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. Here, you should modify the files path in those files. 
 ###  Get the training positive samples  
 ```
 python get_trainpositive_centerpoint.py  
