@@ -37,7 +37,27 @@ Modify the path to the input and output files in the Getnpymatrix_chr_all_sample
 bash Getnpymatrix_chr_all_sample.sh  
 ```
 ## Model training
-If you want to retrain the model, follow the training data generation method in our paper to get the required training sample, and then run:  
+If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. Here, you should modify the files path in the file. 
+###  Get the training positive samples  
+```
+python get_trainpositive_centerpoint.py  
+python get_trainpositive_sample.py  
+```
+###  Get the training negative samples  
+```
+python get_trainnegative_centerpoint.py  
+python get_trainnegative_sample.py  
+```
+### Merge positive samples and negative samples  
+```
+python merge_positive_negative.py  
+```
+### Get Train-validation-test sample  
+```
+python training_trainval.py  
+python training_test.py  
+```
+### Training  
 ```
 python loops_train.py -t [Train file directory] -v [validation file directory] 
 ```
