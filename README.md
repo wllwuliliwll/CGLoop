@@ -61,7 +61,7 @@ python training_test.py
 ```
 python loops_train.py -t [Train file ] -v [validation file ] 
 ```
-# Use CGLoop to predict chromatin loops  
+## Use CGLoop to predict chromatin loops  
 Run the following code to make predictions of genome-wide chromatin loops:  
 ```
 bash cgloop.sh
