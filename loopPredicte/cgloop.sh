@@ -14,7 +14,7 @@ do
         filename=${parts[-1]}
         chrname=$(echo $filename | grep -oP 'chr\d+')
         res=$((resolution / 1000))
-        python ./loops_predicte.py -i $input_path -o /Path/to/${chrname}.bedpe -r $resolution               
+        python ../Model/loops_predicte.py -i $input_path -o ../result/${chrname}.bedpe -r $resolution               
     done
 done
 
