@@ -54,7 +54,7 @@ python get_trainpositive_sample.py -d [PositiveTxt_dir] -b [frequence_matrix_dir
 ###  Get the training negative samples  
 ```
 python get_trainnegative_point.py -p [PositiveTxt_dir] -n [norm_factor_dir] -o [NegativeTxt_dir] 
-python get_trainnegative_sample.py -x[frequence_matrix_dir] -p [NegativeTxt_dir] -o [Negativenpy_dir] -n [negative_name_sort_dir] -i [Interaction_frequency_dir] 
+python get_trainnegative_sample.py -x [frequence_matrix_dir] -p [NegativeTxt_dir] -o [Negativenpy_dir] -n [negative_name_sort_dir] -i [Interaction_frequency_dir] 
 ```
 ### Merge positive samples and negative samples  
 Here, you need to update the path in the corresponding file and run:  
