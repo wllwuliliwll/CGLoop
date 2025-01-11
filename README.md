@@ -38,7 +38,7 @@ bash Getnpymatrix_chr_all_sample.sh
 ```
 ## Model training
 If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. 
-###  Get the norm_factor file, Interaction_frequency file, frequence_matrix file 
+###  Get the norm_factor file, Interaction_frequency file 
 If you have not norm_factor file and Interaction_frequency file,please run the following command, the generated file will be used in the subsequent data generation process.
 Here, you need to update the path in the corresponding file and run: 
 ```
