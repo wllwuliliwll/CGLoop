@@ -5,6 +5,7 @@ import numpy as np
   "output_file_path" is the output path of merge_neggative, 
   "array1" is the output path of the merge_neggative. it is the negative.npy file path ;
   "array2" is the positive.npy file path.
+  "output" is merge_positive_negative.py's output,it merged the positive.npy and negative.npy as pos_neg.npy
 '''
 def merge_neggative():
     a = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','X']
@@ -51,8 +52,9 @@ def merge_posneg():
         array2 = np.load('/path_of_positivenpy_sample_dir/KR_{res}kb_matrix_chr' + str(a[n]) + '_positive.npy'')
         combined_array = np.vstack((array1, array2))
         print("merge data shape：", combined_array.shape)
-        np.random.shuffle(combined_array)
-        np.save('/path_of_merge_posneg_.npy/KR_{res}kb_matrix_chr' + str(a[n]) + '_pos_neg_tive.npy', combined_array)
+        #np.random.shuffle(combined_array)
+        output = '/path_of_merge_posneg_.npy/KR_{res}kb_matrix_chr' + str(a[n]) + '_pos_neg_tive.npy'
+        np.save(output, combined_array)
 
 def main():
     merge_neggative()
