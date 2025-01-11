@@ -4,16 +4,10 @@ import math
 import argparse
 import os
 import tempfile
-import ctcf_h3k27ac_merge  # 导入ctcf_h3k27ac_merge模块
+import ctcf_h3k27ac_merge 
 
 def generate_temp_file(prefix, suffix=".bedpe"):
-    """
-    生成临时文件路径
-    :param prefix: 文件名前缀
-    :param suffix: 文件名后缀
-    :return: 临时文件路径
-    """
-    temp_dir = tempfile.gettempdir()  # 获取系统临时目录
+    temp_dir = tempfile.gettempdir() 
     return os.path.join(temp_dir, f"{prefix}{suffix}")
 
 def ctcf_h3k27ac_norm(ctcffile,h3k27acfile,pro_outdir):#.bedpe
@@ -117,7 +111,6 @@ def ctcf_h3k27ac_norm(ctcffile,h3k27acfile,pro_outdir):#.bedpe
 
 
 def merge_positive(infile,outfile_dir):
-    '''将合并的正样本分成不同染色体不同文件的正样本'''
     a = ['chr1', 'chr2', 'chr3', 'chr4', 'chr5', 'chr6', 'chr7', 'chr8', 'chr9', 'chr10', 'chr11', 'chr12',
         'chr13', 'chr14', 'chr15', 'chr16', 'chr17', 'chr18', 'chr19', 'chr20', 'chr21', 'chr22', 'chrX']
     new_list = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
@@ -141,9 +134,9 @@ def merge_positive(infile,outfile_dir):
                 info[2] = str(info[2])
                 temp = '\t'.join(info)  
                 outfile.write(temp + '\n')  
-            print(f"正样本第{a[i]}染色体，共有正样本：{n}个")
+            print(f"{a[i]}，positive_point samples：{n}")
         
-    print(f"共有{num}个正样本")
+    print(f"There have {num} positive_point samples")
 
 import io
 def main():
@@ -153,58 +146,18 @@ def main():
     parser.add_argument('-i2', '--h3k27ac_file', type=str, required=True, help='Path to H3K27AC file')
     parser.add_argument('-o', '--positive_file', type=str, required=True, help='Path to save positive result file')
     parser.add_argument('-p', '--pro_outfile', type=str, required=True, help='Path to save process data dir')
-
-    # 解析命令行参数
     args = parser.parse_args()
-
-    # 动态生成中间文件路径
-    #del_ctcf_path = generate_temp_file("del_ctcf")
-    #del_h3k27ac_path = generate_temp_file("del_h3k27ac")
-    #merge_path = generate_temp_file("merge")
-    #apart_merge_path = generate_temp_file("apart_merge")
-
-    # print(f"中间文件将存储在：\n"
-    #       f"del_ctcf_path: {del_ctcf_path}\n"
-    #       f"del_h3k27ac_path: {del_h3k27ac_path}\n"
-    #       f"merge_path: {merge_path}\n"
-    #       f"apart_merge_path: {apart_merge_path}\n")
-
-    # 调用相关函数
     file1, file2 = ctcf_h3k27ac_norm(args.ctcf_file, args.h3k27ac_file, args.pro_outfile)
-    print("file1",file1)
-    print("file2",file2)
     del_h3k27ac_path = ctcf_h3k27ac_merge.ctcf_h3k27ac(file1, file2, args.pro_outfile, 'del_h3k27ac')
-    print("del_h3k27ac_path",del_h3k27ac_path)
     del_ctcf_path = ctcf_h3k27ac_merge.ctcf_h3k27ac(del_h3k27ac_path, file1, args.pro_outfile, 'del_ctcf')
-    print("del_ctcf_path",del_ctcf_path)
-    ###############################
-    print("del_ctcf_path",del_ctcf_path)
     merge_path = ctcf_h3k27ac_merge.merge(del_ctcf_path, del_h3k27ac_path, args.pro_outfile, 'merge')
-    print("merge_path",merge_path)
     apart_merge_path = ctcf_h3k27ac_merge.apart_merge(merge_path, args.pro_outfile, 'apart_merge')
-    print("apart_merge_path",apart_merge_path)
-    # 调用正样本生成逻辑
     merge_positive(apart_merge_path, args.positive_file)
 
-    print(f"最终正样本文件已保存到：{args.positive_file}")
+    print(f"positive.txt file save to：{args.positive_file}")
 
 
     
 if __name__ == "__main__":
     main()
-
-
-
-
-    # #查看bedpe文件格式是否正确，不正确需要处理，我这里是做了取整操作
-    # ctcf_file = 'path/of/ctcf_chiapet.bedpe'
-    # h3k27ac_file ='path/of/h3k27ac_hichip.bedpe'
-    # del_ctcf = 'path/of/del_ctcf.bedpe'
-    # del_h3k27ac = 'path/of/del_h3k27ac.bedpe'
-    # merge = 'path/of/merge.bedpe'
-    # file1,file2 = ctcf_h3k27ac_norm(ctcf_file,h3k27ac_file)
-    # ctcf_h3k27ac_merge.ctcf_h3k27ac(file1,file2,del_h3k27ac)
-    # ctcf_h3k27ac_merge.ctcf_h3k27ac(del_h3k27ac,ctcf_file,del_ctcf)
-    # ctcf_h3k27ac_merge.merge(del_h3k27ac,del_h3k27ac,merge)
-    # ctcf_h3k27ac_merge.apart_merge(merge,apart-merge)
 
