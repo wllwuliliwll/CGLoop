@@ -48,7 +48,7 @@ GetKRobserved_excerces.sh
 ###  Get the training positive samples 
 Here, you need to download the gm12878.tang.ctcf-chiapet.hg19.bedpe and gm12878.mumbach.h3k27ac-hichip.hg19.bedpe files, the download address is in the supplemental file.And run:
 ```
-python get_trainpositive_point.py  i1 [ctcf.bedpe] -i2 [h3k27ac.bedpe] -o [PositiveTxt_dir] -p [processdata_dir]
+python get_trainpositive_point.py  -i1 [ctcf.bedpe] -i2 [h3k27ac.bedpe] -o [PositiveTxt_dir] -p [processdata_dir]
 python get_trainpositive_sample.py -d [PositiveTxt_dir] -b [frequence_matrix_dir] -o [Positivenpy_dir]  
 ```
 ###  Get the training negative samples  
