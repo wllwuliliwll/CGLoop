@@ -1,12 +1,12 @@
-#合并按比例的负样本每条染色体100份文件
+#100 copies of each chromosome of the combined negative sample as 1 copy
 import numpy as np
 def merge_neggative():
     a = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','X']
     res=5
     matrix_size=21
     for n in range(len(a)):
-        folder_path = 'path/of/negative_sample/dir/'
-        output_file_path = 'path/of/negative_sample.npy'
+        folder_path = '/path_of_negative_sample0-100_dir/'
+        output_file_path = f'path/of/negative_sample_dir/KR_{res}kb_matrix_chr' + str(a[n]) + '_negative.npy'
         merged_data = None
 
         for i in range(100):  
@@ -27,28 +27,28 @@ def merge_neggative():
                 print(f"文件 {file_name} 不存在，跳过。")
 
         np.save(output_file_path, merged_data)
-#删选infy<=1
-def remove_infy1() :
-    data = 'path/of/negative_sample.npy'
-    outfile = 'path/of/negative_sample_delete.npy'
-    column_223 = data[:, 222]
-    rows_to_delete = np.where(column_223 <= 1)
-    filtered_data = np.delete(data, rows_to_delete, axis=0)
-    np.save(outfile, filtered_data) 
-#合并正负样本
+# #删选infy<=1
+# def remove_infy1() :
+#     data = 'path/of/negative_sample.npy'#merge_neggative()
+#     outfile = 'path/of/negative_sample_delete.npy'
+#     column_223 = data[:, 222]
+#     rows_to_delete = np.where(column_223 <= 1)
+#     filtered_data = np.delete(data, rows_to_delete, axis=0)
+#     np.save(outfile, filtered_data) 
+
 def merge_posneg():
     a = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','X']
     res=5
     matrix_size=21
     for n in range(len(a)):
-        array1 = np.load('path/of/egative_sample_delete.npy')
-        array2 = np.load('path/of/positive_sample.npy')
+        array1 = np.load(f'/path_of_negativenpy_sample_delete_dir/KR_{res}kb_matrix_chr' + str(a[n]) + '_negative.npy')# merge_neggative()'s output file
+        array2 = np.load('/path_of_positivenpy_sample_dir/KR_{res}kb_matrix_chr' + str(a[n]) + '_positive.npy'')
         combined_array = np.vstack((array1, array2))
-        print("合并后的数组形状：", combined_array.shape)
+        print("merge data shape：", combined_array.shape)
         np.random.shuffle(combined_array)
-        np.save('path/of/merge_posneg_.npy', combined_array)
+        np.save('/path_of_merge_posneg_.npy/KR_{res}kb_matrix_chr' + str(a[n]) + '_pos_neg_tive.npy', combined_array)
 
 def main():
     merge_neggative()
-    remove_infy1()
+    #remove_infy1()
     merge_posneg()
