@@ -2,8 +2,7 @@
 import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras.models import Model
-import scripts  # 导入 scripts.py 中的模块
-
+import scripts  
 def create_model():
     inputs = tf.keras.Input(shape=(21, 21, 1))
     x = tf.keras.layers.Conv2D(64, kernel_size=(3, 3), activation='elu')(inputs)
@@ -12,8 +11,7 @@ def create_model():
     x = tf.keras.layers.SeparableConv2D(32, kernel_size=(3, 3), activation='elu')(x)
     x = tf.keras.layers.MaxPool2D((2, 2))(x)
     x = tf.keras.layers.Flatten()(x)
-    cnn_model = tf.keras.Model(inputs, x)
-    
+    cnn_model = tf.keras.Model(inputs, x)    
     inputs = tf.keras.Input((None, 21, 21, 1))
     encoded_fea1 = tf.keras.layers.TimeDistributed(cnn_model)(inputs)
     encoded_fea2 = tf.keras.layers.Bidirectional(tf.keras.layers.GRU(64, return_sequences=True))(encoded_fea1)
