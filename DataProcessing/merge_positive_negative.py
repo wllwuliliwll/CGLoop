@@ -1,5 +1,11 @@
 #100 copies of each chromosome of the combined negative sample as 1 copy
 import numpy as np
+'''
+  "folder_path" is the output (-o) path directory of get_trainnegative_sample.py, which is the directory of the .npy file of the generated negative sample;
+  "output_file_path" is the output path of merge_neggative, 
+  "array1" is the output path of the merge_neggative. it is the negative.npy file path ;
+  "array2" is the positive.npy file path.
+'''
 def merge_neggative():
     a = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','X']
     res=5
