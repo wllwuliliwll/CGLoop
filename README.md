@@ -25,26 +25,25 @@ juicer_tools
 ## Data preparation
 Data preparation mainly involves: downloading .hic file, extracting Hi-C contact matrix from.hic file, and generating submatrix from Hi-C contact matrix. Hi-C data downloaded from [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525]()  
 ### Extracting Hi-C contact matrix from.hic file
-The process obtains the hic contact matrix for each chromosome from the.hic file.  
-Modify the path to the input and output files in the GetBigMatrix_Cells_KRobserved.sh file: The.jar file is the path where the juicer tools resides, .hic file path consisting of DPATH and CELL, outputDir Specifies the path for storing output files, and run:  
+The process obtains the hic contact matrix for each chromosome from the.hic file. It will output the frequency_matrix file.  
+Modify the path to the input and output files in the GetBigMatrix_Cells_KRobserved.sh file: The.jar file is the path where the juicer tools resides, and run:  
 ```
 bash GetBigMatrix_Cells_KRobserved.sh
 ```
 ### Generating sub-matrix from Hi-C contact matrix
 The process cuts the hic contact matrix of each chromosome into multiple submatrices.
-Modify the path to the input and output files in the Getnpymatrix_chr_all_sample.sh file, where the input file is the output file from the previous step, DPATH and CELL form the root directory of the output file, and run:  
+Modify the path to the input and output files in the Getnpymatrix_chr_all_sample.sh file, where the input file is the output file from the previous step, DPATH is the root directory of the frequence_matrix file, and run:  
 ```
 bash Getnpymatrix_chr_all_sample.sh  
 ```
 ## Model training
 If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. 
 ###  Get the norm_factor file, Interaction_frequency file, frequence_matrix file 
-If you have not norm_factor file, Interaction_frequency file, frequence_matrix file, please run the following command, the generated file will be used in the subsequent data generation process.
+If you have not norm_factor file and Interaction_frequency file,please run the following command, the generated file will be used in the subsequent data generation process.
 Here, you need to update the path in the corresponding file and run: 
 ```
 GetKRnorm _excerces_factor.sh 
 GetKRobserved_excerces.sh
-GetBigMatrix_Cells_KRobserved.sh
 ```
 ###  Get the training positive samples 
 Here, you need to download the gm12878.tang.ctcf-chiapet.hg19.bedpe and gm12878.mumbach.h3k27ac-hichip.hg19.bedpe files, the download address is in the supplemental file.And run:
