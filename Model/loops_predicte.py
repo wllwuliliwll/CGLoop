@@ -100,7 +100,7 @@ def main(inputfile, outputfile, res):
     test_data = np.load(filepath)
     location = test_data[:,:2]
     print(test_data.shape)
-    data, infy = test_data[:, 2:-1], test_data[:, 222]
+    data, infy = test_data[:, 2:], test_data[:, 222]
     scaler_filename = "./scaler.pkl"
     scaler = joblib.load(scaler_filename)
     data1 = scaler.transform(data)
