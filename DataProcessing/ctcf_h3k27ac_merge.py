@@ -4,7 +4,6 @@ import tempfile
 def ctcf_h3k27ac(file1, file2, pro_outfile, outfilename):
     file1_info = {}
 
-    # 使用 with open 来打开文件，确保文件自动关闭
     with open(file1, 'r') as infile1:
         for line in infile1:
             line = line.strip('\n').strip('\t')
@@ -14,7 +13,6 @@ def ctcf_h3k27ac(file1, file2, pro_outfile, outfilename):
                 file1_info[chromosome] = []
             file1_info[chromosome].append([chromosome, int(start1), int(end1), int(start2), int(end2)])
 
-    # 对每个染色体按起始位置排序
     for chromosome in file1_info:
         file1_info[chromosome] = sorted(file1_info[chromosome], key=lambda x: x[1])
 
@@ -34,7 +32,6 @@ def ctcf_h3k27ac(file1, file2, pro_outfile, outfilename):
             end1 = int(end1)
             end2 = int(end2)
         
-            # 获取当前染色体的信息并对其排序
             file1_info_temp = file1_info[chromosome]
             file1_info_temp = sorted(file1_info_temp, key=lambda x: x[1])
 
@@ -116,12 +113,11 @@ def ctcf_h3k27ac(file1, file2, pro_outfile, outfilename):
             temp = '\t'.join(info)
             out.write(temp + '\n')
 
-    print(f"合并后的结果保存在: {outfile1}")
+    #print(f"merge results saved in: {outfile1}")
     return outfile1
 
 
 def merge(file1,file2,pro_outfile,outfilename):
-    '''两个文件进行合并'''
     #print(file1)
     file1_info = {}
     infile = open(file1, 'r')
@@ -168,7 +164,6 @@ def merge(file1,file2,pro_outfile,outfilename):
     return outfile_path  
 
 def apart_merge(file, pro_outfile, outfilename):
-    # 确保 'file' 是文件路径字符串
     if isinstance(file, str):
         with open(file, 'r') as infile:
             res = 5000
@@ -185,7 +180,6 @@ def apart_merge(file, pro_outfile, outfilename):
                     for j in range(s2 + 1, e2 + 2):
                         clist.append([chromosome, i, j])
 
-    # 去重函数
     def remove_duplicates(lst):
         seen = {}
         result = []
@@ -195,11 +189,9 @@ def apart_merge(file, pro_outfile, outfilename):
                 seen[key] = True
                 result.append(item)
         return result
-
-    # 去重后的列表
     new_lst = remove_duplicates(clist)
 
-    outfile_path0 = os.path.join(os.path.dirname(pro_outfile), outfilename + '.bedpe')# 将结果写入输出文件
+    outfile_path0 = os.path.join(os.path.dirname(pro_outfile), outfilename + '.bedpe')
     with open(outfile_path0, 'w+') as outfile0:
         n = 0
         for info in new_lst:
@@ -209,7 +201,7 @@ def apart_merge(file, pro_outfile, outfilename):
             temp = '\t'.join(info)
             outfile0.write(temp + '\n')
 
-    print(f"共处理 {n} 条记录")
+    #print(f"deal with {n} ")
     return outfile_path0
 
 
