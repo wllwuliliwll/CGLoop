@@ -103,9 +103,9 @@ def generate_negative_samples(a, res, matrix_size, row_base_path, big_matrix_bas
             for item in indexbin:
                 f_out.write('\t'.join(map(str, item)) + '\n')
 
-        print(f"完成第{a[n]}条染色体的负样本生成")
-        print(f"正样本共有：{len(row_bin)}")
-        print(f"负样本共有：{len(indexbin)}")
+        print(f"finished {a[n]}")
+        print(f"positiva samples：{len(row_bin)}")
+        print(f"negative samples：{len(indexbin)}")
 
 def main():
     parser = argparse.ArgumentParser(description="Generate negative samples based on positive samples.")
