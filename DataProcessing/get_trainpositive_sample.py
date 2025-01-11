@@ -6,7 +6,7 @@ import numpy as np
 import os
 def get_submatrix_positive(matrix_input_file_path, center_point_input_file_path, output_file_path,matrix_size):
     now = datetime.datetime.now()
-    print("染色体", center_point_input_file_path.split('/')[-1], "正样本已开始", "    Current time is:", now)
+    print( center_point_input_file_path.split('/')[-1], "start", "    Current time is:", now)
     all_matrix_file = open(matrix_input_file_path, 'r')
     number_all_matrix_file = 0
     for line in all_matrix_file:
@@ -32,7 +32,7 @@ def get_submatrix_positive(matrix_input_file_path, center_point_input_file_path,
     all_matrix_file = open(matrix_input_file_path, 'r')
     for line_all_matrix_file in all_matrix_file:
         current_row += 1
-        #print("当前行current_row：",current_row)
+        #print("current_row：",current_row)
         # if current_row % 100 == 0:
         #     print("正样本：", center_point_input_file_path.split('/')[-1], "已经进行了",
         #           (current_row * 100) / number_all_matrix_file, "%")
@@ -40,7 +40,7 @@ def get_submatrix_positive(matrix_input_file_path, center_point_input_file_path,
         #line=np.array(line)
         #print(line.shape)
         for num in range(number_point):#中心点文件行数
-            #print("中心点：",num)
+            #print("center point：",num)
             rows_point = point_list[num][0]
             columns_point = point_list[num][1]
             start_row = rows_point - matrix_size//2
@@ -76,10 +76,8 @@ def get_submatrix_positive(matrix_input_file_path, center_point_input_file_path,
     all_all = np.concatenate((all_matrix, label_1), axis=1)#不带位置442列，训练集验证集，Positive时使用
     np.save(output_file_path, all_all)
     now = datetime.datetime.now()
-    print("染色体", center_point_input_file_path.split('/')[-1], "正样本已结束", " Current time is:", now)
-# 设置命令行参数解析
+    print(center_point_input_file_path.split('/')[-1], "end", " Current time is:", now)
 def parse_args():
-    # 默认染色体列表
     default_chromosomes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
                            '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', 'X']
     
@@ -95,7 +93,6 @@ def parse_args():
     return parser.parse_args()
 
 def main():
-    # 解析命令行参数
     args = parse_args()
 
     # 获取参数值
@@ -110,8 +107,6 @@ def main():
         positive_name = os.path.join(data_dir, f"positive_chr{chr_name}.txt")
         big_matrix_name = os.path.join(bigmatrix_dir,f"KR_matrix_{resolution}kb.chr{chr_name}")
         np_save_name_positive = os.path.join(output_dir, f"KR_{resolution}kb_matrix_chr{chr_name}_positive.npy")
-
-        # 调用处理函数
         get_submatrix_positive(big_matrix_name, positive_name, np_save_name_positive, matrix_size)
 
     print("Processing complete.")
