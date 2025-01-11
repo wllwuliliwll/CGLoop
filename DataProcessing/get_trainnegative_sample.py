@@ -5,7 +5,7 @@ import argparse
 
 def get_submatrix_negative(matrix_input_file_path, center_point_input_file_path, output_file_path, negative_name_sort, interaction_frequency_path, chromosome, matrix_size, res):
     now = datetime.datetime.now()
-    print("染色体", center_point_input_file_path.split('/')[-1], "负样本已开始", "    Current time is:", now)
+    print(center_point_input_file_path.split('/')[-1], "start", "    Current time is:", now)
     
     # Read all matrix file to calculate the total number of rows
     with open(matrix_input_file_path, 'r') as all_matrix_file:
@@ -33,7 +33,7 @@ def get_submatrix_negative(matrix_input_file_path, center_point_input_file_path,
                 point_list.append([int(temp[0]), int(temp[1])])
                 num_center_point_delete += 1
 
-        print("删除前中心点共有", num_center_point_all, "个，删除后有", num_center_point_delete, "个")
+        print("filtered before", num_center_point_all, "，filtered after", num_center_point_delete)
         point_list_temp = sorted(point_list)
 
         # Split into 100 parts
@@ -105,12 +105,12 @@ def get_submatrix_negative(matrix_input_file_path, center_point_input_file_path,
                 else:
                     delete_num += 1
 
-            print("原本有矩阵：", len(all_matrix))
+            print("raw matrices：", len(all_matrix))
             new_number_point = len(point_list_new)
             new_number_point_all += new_number_point
-            print("共删除了：", delete_num, "个")
-            print("还剩下负样本交互矩阵：", len(all_matrix_new), "个")
-            print("还剩下负样本交互中心点：", len(point_list_new), "个")
+            print("filtered：", delete_num, "个")
+            print("negative matrices：", len(all_matrix_new), "个")
+            print("negative point：", len(point_list_new), "个")
 
             with open(negative_name_sort[:-4] + '_' + str(point_list_part) + '.txt', 'w+') as output_file_point_list:
                 for num in point_list_new:
@@ -126,7 +126,7 @@ def get_submatrix_negative(matrix_input_file_path, center_point_input_file_path,
             np.save(output_file_path[:-4] + "_" + str(point_list_part) + '.npy', all_all)
 
     now = datetime.datetime.now()
-    print("染色体", center_point_input_file_path.split('/')[-1], "负样本已结束", " Current time is:", now)
+    print(center_point_input_file_path.split('/')[-1], "end", " Current time is:", now)
 
 
 
