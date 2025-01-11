@@ -10,15 +10,15 @@ checkMakeDirectory(){
 chromList="20 21 22 "
 resolutions="5000"
 DPATH="/path/of/frequence_matrix/"
-cell_Dir="${DPATH}"
+save_path=$(dirname "$DPATH")/chr_all_sample
+mkdir -p "$save_path"
 matrix_size=21
 for resolution in $resolutions; do
     echo $resolution
     display_reso=$((resolution / 1000))
-    mkdir -p "${cell_Dir}/${display_reso}kb"
     for chrom in $chromList; do
         echo $chrom
-        python chr_all_sample.py ${cell_Dir}/KR_matrix_${display_reso}.chr$chrom ${cell_Dir}/${display_reso}kb/chr${chrom}_matrixsize${matrix_size}.npy $matrix_size ${display_reso}
-        python control_contact.py ${cell_Dir}/${display_reso}kb/chr${chrom}_matrixsize${matrix_size}.npy ${cell_Dir}/${display_reso}kb/chr${chrom}_matrixsize${matrix_size}_delet1.npy
+        python chr_all_sample.py ${DPATH}KR_matrix_${display_reso}kb.chr$chrom ${save_path}/chr${chrom}_matrixsize${matrix_size}_tmp.npy $matrix_size ${display_reso}
+        python control_contact.py ${save_path}/chr${chrom}_matrixsize${matrix_size}_tmp.npy ${save_path}/chr${chrom}_matrixsize${matrix_size}.npy
     done
 done
