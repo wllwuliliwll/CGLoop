@@ -1,8 +1,16 @@
 import os
 import numpy as np
-input_folder = "/path/of/posneg/dir/"
+from sklearn.model_selection import train_test_split
+'''
+"input_folder" is is the folder directory after merging positive and negative samples;
+"output_folder" is the folder directory after merging chr1-19;
+"file_path" is the .npy file after merging chr1-19.
+"train.npy" is the processed training set and "val.npy" is the validation set.
+'''
+input_folder = "/path/of/pos_neg/dir/"    
 output_folder = "/path/of/outputfile/dir/"
-#文件名匹配
+
+#合并chr1-19
 file_template = "/name/of/posnegfile/chr{}_posneg.npy"
 start_chr = 1
 end_chr = 19
@@ -19,8 +27,6 @@ output_file_path = os.path.join(output_folder, output_file_name)
 np.save(output_file_path, np.array(concatenated_data))
 
 #将合并抽取的数据划分训练集和验证集
-import numpy as np
-from sklearn.model_selection import train_test_split
 file_path = "/path/of/chr1-19posneg.npy"
 array = np.load(file_path)
 num_rows, num_cols = array.shape
