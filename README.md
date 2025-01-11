@@ -37,22 +37,33 @@ Modify the path to the input and output files in the Getnpymatrix_chr_all_sample
 bash Getnpymatrix_chr_all_sample.sh  
 ```
 ## Model training
-If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. Here, you should modify the files path in those files. 
-###  Get the training positive samples  
+If you want to retrain the model, follow the training data generation method in our paper to get the required training sample. 
+###  Get the norm_factor file, Interaction_frequency file, frequence_matrix file 
+If you have not norm_factor file, Interaction_frequency file, frequence_matrix file, please run the following command, the generated file will be used in the subsequent data generation process.
+Here, you need to update the path in the corresponding file and run: 
 ```
-python get_trainpositive_centerpoint.py  
-python get_trainpositive_sample.py  
+GetKRnorm _excerces_factor.sh 
+GetKRobserved_excerces.sh
+GetBigMatrix_Cells_KRobserved.sh
+```
+###  Get the training positive samples 
+Here, you need to download the gm12878.tang.ctcf-chiapet.hg19.bedpe and gm12878.mumbach.h3k27ac-hichip.hg19.bedpe files, the download address is in the supplemental file.And run:
+```
+python get_trainpositive_point.py  i1 [ctcf.bedpe] -i2 [h3k27ac.bedpe] -o [PositiveTxt_dir] -p [processdata_dir]
+python get_trainpositive_sample.py -d [PositiveTxt_dir] -b [frequence_matrix_dir] -o [Positivenpy_dir]  
 ```
 ###  Get the training negative samples  
 ```
-python get_trainnegative_centerpoint.py  
-python get_trainnegative_sample.py  
+python get_trainnegative_point.py -p [PositiveTxt_dir] -n [norm_factor_dir] -o [NegativeTxt_dir] 
+python get_trainnegative_sample.py -x[frequence_matrix_dir] -p [NegativeTxt_dir] -o [Negativenpy_dir] -n [negative_name_sort_dir] -i [Interaction_frequency_dir] 
 ```
 ### Merge positive samples and negative samples  
+Here, you need to update the path in the corresponding file and run:  
 ```
 python merge_positive_negative.py  
 ```
 ### Get Train-validation-test sample  
+Here, you need to update the path in the corresponding file and run: 
 ```
 python training_trainval.py  
 python training_test.py  
@@ -67,7 +78,7 @@ Run the following code to make predictions of genome-wide chromatin loops:
 bash cgloop.sh
 ```
 ## Clustering
-The clustering method similar to that in peakachu[https://github.com/tariks/peakachu]() was used for clustering screening:  
+The clustering method in peakachu[https://github.com/tariks/peakachu]() was used for clustering screening:  
 ```
 git clone https://github.com/tariks/peakachu
 ```
