@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Method reference from hicexplorer
 # converting .hic files to .cool file
 hic_files=(
 
