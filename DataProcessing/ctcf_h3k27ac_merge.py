@@ -176,8 +176,8 @@ def apart_merge(file, pro_outfile, outfilename):
                 e1 = int(end1) // res
                 s2 = int(start2) // res
                 e2 = int(end2) // res
-                for i in range(s1 + 1, e1 + 2):
-                    for j in range(s2 + 1, e2 + 2):
+                for i in range(s1 + 1, e1 + 1):
+                    for j in range(s2 + 1, e2 + 1):
                         clist.append([chromosome, i, j])
 
     def remove_duplicates(lst):
